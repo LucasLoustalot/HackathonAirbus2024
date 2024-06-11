@@ -139,11 +139,7 @@ langs = [
 
 
 def get_translated_list(word):
-    try:
-        with open("sample.json", "r") as infile:
-            data = json.load(infile)
-    except FileNotFoundError:
-        data = []
+    data = []
     for lang in langs:
         translated = GoogleTranslator(source="auto", target=lang).translate(text=word)
         if translated != word:
@@ -152,9 +148,7 @@ def get_translated_list(word):
                 "translation": translated,
             }
             data.append(translate_details)
-    with open("sample.json", "w") as outfile:
-        json.dump(data, outfile, indent=4, ensure_ascii=False)
     return data
 
 
-get_translated_list("Bonjour")
+print(get_translated_list("Bonjour")[0]["lang"])
