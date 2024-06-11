@@ -21,7 +21,7 @@ def get_search_results():
 
     ## get request result
     test = [
-        "name1, location1, link1, contact1, revenue1, size1, certifications1, skills1, main domain1, main customers1",
+        "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, Airbus.fr, 100M, 100K, FR, Skil, Aviation, Army",
         "name2, location2, link2, contact2, revenue2, size2, certifications2, skills2, main domain2, main customers2",
     ]
 
