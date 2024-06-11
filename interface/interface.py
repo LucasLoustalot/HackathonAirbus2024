@@ -21,8 +21,8 @@ def get_search_results():
 
     ## get request result
     test = [
-        "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, Airbus.fr, 100M, 100K, FR, Skil, Aviation, Army",
-        "name2, location2, link2, contact2, revenue2, size2, certifications2, skills2, main domain2, main customers2",
+        "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, support@airbus.com, 100M, 100K, FR, Skil, Aviation, Army",
+        "name2, location2, link2, contact2, revenue2, size2, Airbus.com, skills2, main domain2, main customers2",
     ]
 
     header = [
