@@ -17,8 +17,9 @@ def parse_result_csv(lst: list[str]) -> list:
 @app.route("/request_search", methods=["POST"])
 def get_search_results():
     keywords = request.get_json()["value"]
+    country_code = request.get_json()["country_code"]
     ## Send to google search
-
+    ## Send to research team and get result
     ## get request result
     test = [
         "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, support@airbus.com, 100M, 100K, FR, Skil, Aviation, Army",
@@ -46,7 +47,6 @@ def get_search_results():
             data[header[i]] = r[i]
         jsonResponse[y] = data
         y += 1
-    print(jsonResponse)
     return jsonify(jsonResponse)
 
 

@@ -35,6 +35,7 @@ function send_input() {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       value: document.getElementById('input_field').value,
+      country_code: document.getElementById("country_code_dropdown").value
     }),
   })
       .then((response) => response.json())

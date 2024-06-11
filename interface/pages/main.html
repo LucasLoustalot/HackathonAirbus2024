@@ -15,6 +15,18 @@
     <form id="search_form" onsubmit="send_input(event)">
         <label for="input_field">Enter keywords to search:</label>
         <input type="text" id="input_field" name="input_field" required />
+        <select name="country_code" id="country_code_dropdown">
+            <option value="FR">France</option>
+            <option value="US">USA</option>
+            <option value="DE">Germany</option>
+            <option value="CH">China</option>
+            <option value="IN">India</option>
+            <option value="RS">Serbia</option>
+            <option value="LT">Lithuania</option>
+            <option value="KR">South Korea</option>
+            <option value="JP">Japan</option>
+            <option value="BR">Brazil</option>
+          </select>
         <button type="submit" id="submit_input">Search</button>
     </form>
 
