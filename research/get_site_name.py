@@ -1,7 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
 
-def get_all_url(source_code):
+ban_words = [
+    "amazon",
+    "manomano",
+    "linkedin",
+    "alibaba",
+    "metoree",
+    "google",
+    "ebay"
+]
+
+def get_all_url(source_code: str) -> list[str]:
     soup = BeautifulSoup(source_code, 'html.parser')
 
     urls = []
