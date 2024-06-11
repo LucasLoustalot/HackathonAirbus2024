@@ -35,7 +35,7 @@ function send_input() {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       value: document.getElementById('input_field').value,
-      country_code: document.getElementById("country_code_dropdown").value
+      country_code: document.getElementById('country_code_dropdown').value
     }),
   })
       .then((response) => response.json())
@@ -54,6 +54,7 @@ function displayResults(data) {
 
   // Define the order of keys
   const keysOrder = [
+    '',  // New column for checkbox
     'Name',
     'Location',
     'Link',
@@ -82,28 +83,40 @@ function displayResults(data) {
   table.appendChild(headerRow);
 
   // Create table rows
-  dataArray.forEach((item) => {
+  dataArray.forEach((item, index) => {
     const row = document.createElement('tr');
-    keysOrder.forEach((key) => {
+
+    // Create checkbox cell
+    const checkboxCell = document.createElement('td');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `checkbox_${index}`;
+    checkboxCell.appendChild(checkbox);
+    row.appendChild(checkboxCell);
+
+    // Create data cells
+    keysOrder.slice(1).forEach((key) => {  // Skip the first 'Checkbox' key
       const td = document.createElement('td');
-      if (isValidURL(item[key])) {
-        const a = document.createElement('a')
-        url = item[key].toLowerCase()
+      if (key === 'Checkbox') {
+        // Skip as checkbox is already added
+      } else if (isValidURL(item[key])) {
+        const a = document.createElement('a');
+        let url = item[key].toLowerCase();
         if (checkIfEmailInString(url)) {
-          url = 'mailto:' + url
-        }
-        else if (!/^https?:\/\//i.test(url)) {
+          url = 'mailto:' + url;
+        } else if (!/^https?:\/\//i.test(url)) {
           url = 'https://' + url;
         }
-        a.href = url
-        a.innerText = item[key]
-        a.target = '_blank'
-        td.appendChild(a)
+        a.href = url;
+        a.innerText = item[key];
+        a.target = '_blank';
+        td.appendChild(a);
       } else {
         td.innerText = item[key];
       }
       row.appendChild(td);
     });
+
     table.appendChild(row);
   });
 

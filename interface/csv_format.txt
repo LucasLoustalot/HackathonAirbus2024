@@ -1,0 +1,1 @@
+name, location, link, contact, revenue, size, certifications, skills, main domain, main customers
