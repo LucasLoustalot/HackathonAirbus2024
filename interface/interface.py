@@ -19,8 +19,8 @@ def get_search_results():
     ## Send to google search
 
     ## get request result
-    test = ["name, location, link, contact, revenue, size, certifications, skills, main domain, main customers",
-"name, location, link, contact, revenue, size, certifications, skills, main domain, main customers"]
+    test = ["name1, location1, link1, contact1, revenue1, size1, certifications1, skills1, main domain1, main customers1",
+"name2, location2, link2, contact2, revenue2, size2, certifications2, skills2, main domain2, main customers2"]
 
 
     header = ["Name", "Location", "Link", "Contact", "Revenue", "Size", "Certifications", "Skills", "Main domain", "Main customers"]
