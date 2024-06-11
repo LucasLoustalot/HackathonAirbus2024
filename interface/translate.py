@@ -1,5 +1,4 @@
 from deep_translator import GoogleTranslator
-import json
 
 langs = [
     "afrikaans",
