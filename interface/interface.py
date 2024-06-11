@@ -26,11 +26,10 @@ def get_search_results():
     header = ["Name", "Location", "Link", "Contact", "Revenue", "Size", "Certifications", "Skills", "Main domain", "Main customers"]
     response = parse_result_csv(test)
     jsonResponse = {}
-    data = {}
     y = 0
     for r in response:
-        data.clear()
-        for i in range(0, len(r) - 1):
+        data = {}
+        for i in range(0, len(r)):
             data[header[i]] = r[i]
         jsonResponse[y] = data
         y += 1
