@@ -1,0 +1,3 @@
+: find information about the company owning the website of the link provided
+I want you to fill out a JSON file with the their company
+name, location, website link, contact info (phone or email adress), turnover, size (how many employees they have), certifactions, skills, main sector and main customers
