@@ -49,23 +49,34 @@ def get_search_results():
     try:
         resultCSV = research.search(keywords, country_code, language)
 
-        # resultCSV = [
-        #     "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
-        #     "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
-        # ]
+        #resultCSV = [
+        #    "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
+        #    "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
+        #]
 
         response = parse_result_csv(resultCSV)
         jsonResponse = {}
+        lens = {}
         y = 0
         for r in response:
             data = {}
+            lens[y] = 0
             for i in range(0, len(r)):
+                if data_headers[i] != "Links" and data_headers[i] != "Contact":
+                    lens[y] += len(r[i])
                 data[data_headers[i]] = r[i]
             jsonResponse[y] = data
             y += 1
-        return jsonify(jsonResponse)
+        lens = dict(sorted(lens.items(), key=lambda item: item[1]))
+        response = {}
+        y = 0
+        for val in reversed(lens.keys()):
+            print("Val: " + str(val))
+            response[y] = jsonResponse[val]
+            y += 1
+        return jsonify(response)
     except Exception as e:
-        print("Error while processing: " + e)
+        print("Error while processing: " + str(e))
         return "{}"
 
 

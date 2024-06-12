@@ -60,5 +60,3 @@ def getAllURLs(source_code: str) -> list[str]:
         if urlIsCorrect(url):
             urls.append(getHomePage(url))
     return urls
-
-print(getHomePage('https://www.cejn.com/fr-fr/marches/hydrogene/'))
