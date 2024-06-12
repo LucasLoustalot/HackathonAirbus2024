@@ -1,8 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+import extract.json_to_csv
 import research.getURLs as getURLs
 import interface.translate
 import research.deleteDuplicates
+import extract.gemini
 
 def search(keyWord : str, countryCode : str, language : str) -> list[str] :
     option = webdriver.ChromeOptions()
@@ -22,7 +24,13 @@ def search(keyWord : str, countryCode : str, language : str) -> list[str] :
 
     driver.close()
 
-    return [
-            "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
-            "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
-        ]
+    resultList = []
+
+    for url in filteredName:
+        json = extract.gemini.get_company_data(url)
+        csv = extract.json_to_csv.json_to_csv(csv)
+        resultList.append(csv)
+
+    return csv
+
+
