@@ -47,8 +47,6 @@ def get_search_results():
 
     try:
         resultCSV = research.search(keywords, country_code, language)
-    ## Send to research team and get result
-    ## get request result
 
         # resultCSV = [
         #     "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
@@ -65,7 +63,8 @@ def get_search_results():
             jsonResponse[y] = data
             y += 1
         return jsonify(jsonResponse)
-    except:
+    except Exception as e:
+        print("Error while processing: " + e)
         return "{}"
 
 
