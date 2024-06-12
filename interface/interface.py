@@ -49,10 +49,10 @@ def get_search_results():
     try:
         resultCSV = research.search(keywords, country_code, language)
 
-        resultCSV = [
-            "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
-            "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
-        ]
+        #resultCSV = [
+        #    "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
+        #    "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
+        #]
 
         response = parse_result_csv(resultCSV)
         jsonResponse = {}
