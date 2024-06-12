@@ -25,6 +25,7 @@ ban_words = [
     "fuck",
     "racist",
     "homedepot",
+    "leroymerlin",
 ]
 
 def getHomePage(url: str) -> str:
