@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import get_site_name
+import getURLs
 
 def search(keyWord : str, countryCode : str, language : str) :
     option = webdriver.ChromeOptions()
@@ -14,6 +14,10 @@ def search(keyWord : str, countryCode : str, language : str) :
 
     driver.get(url)
 
-    companyName = get_site_name.get_all_url(driver.page_source)
+    companyName = getURLs.getAllURLs(driver.page_source)
+
+    print(companyName)
 
     driver.close()
+
+search("clamp company", "US", "english")

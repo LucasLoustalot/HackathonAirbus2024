@@ -29,5 +29,3 @@ def getAllURLs(source_code: str) -> list[str]:
         if urlIsCorrect(url):
             urls.append(link.get('href'))
     return urls
-
-print(urlIsCorrect('None'))
