@@ -16,6 +16,7 @@ languages = {
     "KR": "korean",
     "JP": "japanese",
     "BR": "portuguese",
+    "WW": "english"
 }
 data_headers = [
     "Name",
@@ -71,7 +72,6 @@ def get_search_results():
         response = {}
         y = 0
         for val in reversed(lens.keys()):
-            print("Val: " + str(val))
             response[y] = jsonResponse[val]
             y += 1
         return jsonify(response)
