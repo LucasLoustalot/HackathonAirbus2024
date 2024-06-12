@@ -4,7 +4,7 @@ def getDomainName(url: str) -> str:
     while url[i] != '/':
         i += 1
     i += 2
-    while url[i] != '/':
+    while i < url.__len__() and url[i] != '/':
         domainName += url[i]
         i += 1
     return domainName
