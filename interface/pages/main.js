@@ -30,22 +30,6 @@ function send_input(event) {
     .then((response) => displayResults(response));
 }
 
-/*function send_input() {
-  event.preventDefault();
-  const input = document.getElementById('input_field').value;
-  console.log('Searching for:', input);
-  fetch('/request_search', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      value: document.getElementById('input_field').value,
-      country_code: document.getElementById('country_code_dropdown').value
-    }),
-  })
-    .then((response) => response.json())
-    .then((response) => displayResults(response));
-}*/
-
 function checkIfEmailInString(text) {
   var re =
     /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;

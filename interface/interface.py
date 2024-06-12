@@ -45,26 +45,28 @@ def get_search_results():
     country_code = request.get_json()["country_code"]
     language = languages[country_code]
 
-    resultCSV = research.search(keywords, country_code, language)
-    ## Send to google search
+    try:
+        resultCSV = research.search(keywords, country_code, language)
     ## Send to research team and get result
     ## get request result
 
-    # test = [
+    # resultCSV = [
     #     "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, support@airbus.com, 100M, 100K, FR, Skil, Aviation, Army",
     #     "name2, location2, link2, contact2, revenue2, size2, Airbus.com, skills2, main domain2, main customers2",
     # ]
 
-    response = parse_result_csv(resultCSV)
-    jsonResponse = {}
-    y = 0
-    for r in response:
-        data = {}
-        for i in range(0, len(r)):
-            data[data_headers[i]] = r[i]
-        jsonResponse[y] = data
-        y += 1
-    return jsonify(jsonResponse)
+        response = parse_result_csv(resultCSV)
+        jsonResponse = {}
+        y = 0
+        for r in response:
+            data = {}
+            for i in range(0, len(r)):
+                data[data_headers[i]] = r[i]
+            jsonResponse[y] = data
+            y += 1
+        return jsonify(jsonResponse)
+    except:
+        return "{}"
 
 
 @app.route("/")
