@@ -57,6 +57,7 @@ header {
 #export_json_button,
 #export_csv_button {
   padding: 10px 20px;
+  width: 150px;
   background-color: #005bb5; /* Airbus blue */
   color: #fff;
   border: none;

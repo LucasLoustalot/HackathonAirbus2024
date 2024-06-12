@@ -13,7 +13,8 @@ function isValidURL(str) {
 
 function send_input(event) {
   event.preventDefault();
-  const input = document.getElementById('input_field').value;
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = '';  // Clear previous results
   const button = document.getElementById('submit_input');
   const loader = document.getElementById('loader');
   loader.style.display = "block";
@@ -29,22 +30,6 @@ function send_input(event) {
     .then((response) => response.json())
     .then((response) => displayResults(response));
 }
-
-/*function send_input() {
-  event.preventDefault();
-  const input = document.getElementById('input_field').value;
-  console.log('Searching for:', input);
-  fetch('/request_search', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      value: document.getElementById('input_field').value,
-      country_code: document.getElementById('country_code_dropdown').value
-    }),
-  })
-    .then((response) => response.json())
-    .then((response) => displayResults(response));
-}*/
 
 function checkIfEmailInString(text) {
   var re =
