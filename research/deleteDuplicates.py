@@ -3,6 +3,7 @@ def getDomainName(url: str) -> str:
     i = 0
     while url[i] != '/':
         i += 1
+    i += 2
     while url[i] != '/':
         domainName += url[i]
         i += 1
@@ -21,5 +22,3 @@ def deleteDuplicates(urls: list[str]) -> list[str]:
             domainsNames.append(getDomainName(url))
         skip = False
     return newListURLs
-
-
