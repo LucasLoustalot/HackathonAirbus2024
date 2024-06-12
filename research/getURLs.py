@@ -17,7 +17,14 @@ ban_words = [
     "grainger",
     "sonepar",
     "hdsupply",
-    "aliexpress"
+    "aliexpress",
+    "porn",
+    "facebook",
+    "xxx",
+    "nazi",
+    "fuck",
+    "racist",
+    "homedepot",
 ]
 
 def getHomePage(url: str) -> str:
