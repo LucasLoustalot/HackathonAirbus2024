@@ -47,23 +47,40 @@ def get_search_results():
     language = languages[country_code]
 
     try:
-        resultCSV = research.search(keywords, country_code, language)
+        #resultCSV = research.search(keywords, country_code, language)
 
-        # resultCSV = [
-        #     "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
-        #     "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
-        # ]
+        resultCSV = [
+            "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
+            "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
+        ]
+
 
         response = parse_result_csv(resultCSV)
         jsonResponse = {}
+        lens = {}
         y = 0
         for r in response:
             data = {}
+            lens[y] = 0
             for i in range(0, len(r)):
+                if data_headers[i] != "Links" and data_headers[i] != "Contact":
+                    lens[y] += len(r[i])
                 data[data_headers[i]] = r[i]
             jsonResponse[y] = data
             y += 1
-        return jsonify(jsonResponse)
+        print(str(lens))
+        lens = dict(sorted(lens.items(), key=lambda item: item[1]))
+        print(str(lens))
+        print(str(jsonResponse))
+
+        response = {}
+        y = 0
+        for i in range(len(lens), 0):
+            response[y] = jsonResponse[lens.values()[i]]
+            y += 1
+        print(response)
+        
+        return jsonify(response)
     except Exception as e:
         print("Error while processing: " + e)
         return "{}"
