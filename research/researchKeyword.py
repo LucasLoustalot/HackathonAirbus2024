@@ -4,7 +4,7 @@ import extract.json_to_csv
 import research.getURLs as getURLs
 import interface.translate
 import research.deleteDuplicates
-#import extract.gemini
+import extract.gemini
 
 def countrySearch(keyWord : str, countryCode : str, language : str, driver) -> list[str]:
     translatedProduct = interface.translate.translated_text(keyWord, "auto", language).replace(" ", "+")
