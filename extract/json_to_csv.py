@@ -20,8 +20,6 @@ def get_list_values(info, json):
             return str
 
 def json_to_csv(json):
-    csvfile = open('companies_info.csv', 'a', newline='')
-    writer = csv.writer(csvfile)
     json = json['args']
     row = ""
     row += get_info_value('name', json) + ";"
@@ -34,4 +32,4 @@ def json_to_csv(json):
     row += get_list_values('skills', json) + ";"
     row += get_info_value('main_sector', json) + ";"
     row += get_list_values('main_customers', json)
-    writer.writerow([row])
+    return row
