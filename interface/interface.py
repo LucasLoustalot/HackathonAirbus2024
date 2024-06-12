@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, Response, jsonify, make_response
+from flask import Flask, render_template, request, Response, jsonify
 import research.researchKeyword as research
 
-app = Flask(__name__, template_folder="pages", static_folder='pages', static_url_path='')
+app = Flask(
+    __name__, template_folder="pages", static_folder="pages", static_url_path=""
+)
 
 languages = {
     "FR": "french",
@@ -13,7 +15,7 @@ languages = {
     "LT": "lithuanian",
     "KR": "korean",
     "JP": "japanese",
-    "BR": "portuguese"
+    "BR": "portuguese",
 }
 data_headers = [
     "Name",
@@ -28,7 +30,8 @@ data_headers = [
     "Main customers",
 ]
 
-def parse_result_csv(lst: list[str]) -> list:
+
+def parse_result_csv(lst: list[str]) -> list[str]:
     ret_lst: list = []
 
     for s in lst:
@@ -70,6 +73,6 @@ def get_search_results():
 def homepage():
     return render_template("main.html")
 
+
 def main():
     app.run()
-
