@@ -1,107 +1,115 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-    background-color: #004680; /* Airbus dark blue */
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #004680; /* Airbus dark blue */
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #search_form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 #search_form label {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 #search_form input[type="text"],
 #search_form select {
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 #search_form button {
-    padding: 10px 20px;
-    background-color: #005bb5; /* Airbus blue */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 10px 20px;
+  background-color: #005bb5; /* Airbus blue */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 #search_form button:hover {
-    background-color: #004680;
+  background-color: #004680;
 }
 
-#export_button {
-    display: block;
-    margin: 0 auto 20px auto;
-    padding: 10px 20px;
-    background-color: #005bb5; /* Airbus blue */
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
+#export_buttons_container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-#export_button:hover {
-    background-color: #004680;
+#export_json_button,
+#export_csv_button {
+  padding: 10px 20px;
+  background-color: #005bb5; /* Airbus blue */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#export_json_button:hover,
+#export_csv_button:hover {
+  background-color: #004680;
 }
 
 #results {
-    margin: 0 auto;
-    width: 90%;
-    max-width: 1200px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 tr:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 a {
-    color: #005bb5; /* Airbus blue */
-    text-decoration: none;
+  color: #005bb5; /* Airbus blue */
+  text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
