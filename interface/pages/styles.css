@@ -15,6 +15,12 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.footer_text {
+  justify-content: center;
+  text-align: center;
+  color: #5c6b78bd;
+}
+
 #search_form {
   display: flex;
   justify-content: center;
