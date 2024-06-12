@@ -37,6 +37,17 @@ function checkIfEmailInString(text) {
   return re.test(text);
 }
 
+function selectAll() {
+    var table = document.getElementById("table_result");
+  
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      for (var j = 1, col; col = row.cells[j]; j++) {
+        const checkbox = row.querySelector('input[type="checkbox"]');
+        checkbox.checked = document.getElementById("checkbox_main").checked
+      }
+    }
+  }
+
 function displayResults(data) {
   const button = document.getElementById('submit_input');
   const loader = document.getElementById('loader');
@@ -72,6 +83,14 @@ function displayResults(data) {
   keysOrder.forEach((key) => {
     const th = document.createElement('th');
     th.innerText = key;
+    if (key == '') {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.class = 'checkbox_export'
+        checkbox.id = `checkbox_main`;
+        checkbox.onchange = selectAll;
+        th.appendChild(checkbox);
+    }
     headerRow.appendChild(th);
   });
   table.appendChild(headerRow);
