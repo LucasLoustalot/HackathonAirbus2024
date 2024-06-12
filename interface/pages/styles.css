@@ -9,7 +9,7 @@ body {
 header {
   background-color: #004680; /* Airbus dark blue */
   color: #fff;
-  padding: 20px;
+  padding: 1px;
   text-align: center;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
