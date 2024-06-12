@@ -11,10 +11,29 @@ ban_words = [
     "ebay",
     "wiki",
     "etsy",
+    "indeed",
     "temu",
     "youtube",
+    "grainger",
+    "sonepar",
+    "hdsupply",
     "aliexpress"
 ]
+
+def getHomePage(url: str) -> str:
+    homePage = ""
+    i = 0
+    while url[i] != '/':
+        homePage += url[i]
+        i += 1
+    homePage += url[i]
+    i += 1
+    homePage += url[i]
+    i += 1
+    while url[i] != '/':
+        homePage += url[i]
+        i += 1
+    return homePage
 
 def urlIsCorrect(url: str) -> bool:
     if len(url) < 8:
@@ -32,5 +51,7 @@ def getAllURLs(source_code: str) -> list[str]:
     for link in soup.find_all('a'):
         url = str(link.get('href'))
         if urlIsCorrect(url):
-            urls.append(link.get('href'))
+            urls.append(getHomePage(url))
     return urls
+
+print(getHomePage('https://www.cejn.com/fr-fr/marches/hydrogene/'))
