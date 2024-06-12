@@ -31,6 +31,6 @@ def search(keyWord : str, countryCode : str, language : str) -> list[str] :
         csv = extract.json_to_csv.json_to_csv(csv)
         resultList.append(csv)
 
-    return csv
+    return resultList
 
 
