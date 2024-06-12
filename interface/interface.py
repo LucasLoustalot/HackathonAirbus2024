@@ -34,7 +34,7 @@ def parse_result_csv(lst: list[str]) -> list:
     ret_lst: list = []
 
     for s in lst:
-        r = s.split(", ")
+        r = s.split("; ")
         ret_lst.append(r)
     return ret_lst
 
@@ -50,10 +50,10 @@ def get_search_results():
     ## Send to research team and get result
     ## get request result
 
-    # resultCSV = [
-    #     "Airbus, Toulouse, https://www.airbus.com/fr/airbus-atlantic, support@airbus.com, 100M, 100K, FR, Skil, Aviation, Army",
-    #     "name2, location2, link2, contact2, revenue2, size2, Airbus.com, skills2, main domain2, main customers2",
-    # ]
+        # resultCSV = [
+        #     "Airbus; Toulouse; https://www.airbus.com/fr/airbus-atlantic; support@airbus.com; 100M; 100K; FR; Skil; Aviation; Army",
+        #     "name2; location2; link2; contact2; revenue2; size2; Airbus.com; skills2; main domain2; main customers2",
+        # ]
 
         response = parse_result_csv(resultCSV)
         jsonResponse = {}
