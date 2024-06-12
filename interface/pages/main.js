@@ -1,13 +1,13 @@
 function isValidURL(str) {
   var pattern = new RegExp(
-      '^(https?:\\/\\/)?' +  // protocol
-          '((([a-zA-Z0-9$_.+!*\',;?&=-]|%[0-9a-fA-F]{2})+(:([a-zA-Z0-9$_.+!*\',;?&=-]|%[0-9a-fA-F]{2})+)?@)?' +  // user:pass
-          '((([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])|([a-zA-Z0-9]))\\.)+([a-zA-Z]{2,6})|' +  // domain name
-          '((\\d{1,3}\\.){3}\\d{1,3}))' +         // OR ip (v4) address
-          '(\\:\\d+)?(\\/[-a-zA-Z0-9%_.~+]*)*' +  // port and path
-          '(\\?[;&a-zA-Z0-9%_.~+=-]*)?' +         // query string
-          '(\\#[-a-zA-Z0-9_]*)?$',
-      'i');  // fragment locator
+    '^(https?:\\/\\/)?' +  // protocol
+    '((([a-zA-Z0-9$_.+!*\',;?&=-]|%[0-9a-fA-F]{2})+(:([a-zA-Z0-9$_.+!*\',;?&=-]|%[0-9a-fA-F]{2})+)?@)?' +  // user:pass
+    '((([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])|([a-zA-Z0-9]))\\.)+([a-zA-Z]{2,6})|' +  // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))' +         // OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-zA-Z0-9%_.~+]*)*' +  // port and path
+    '(\\?[;&a-zA-Z0-9%_.~+=-]*)?' +         // query string
+    '(\\#[-a-zA-Z0-9_]*)?$',
+    'i');  // fragment locator
   return !!pattern.test(str);
 }
 
@@ -17,19 +17,34 @@ function send_input(event) {
   console.log('Searching for:', input);
   fetch('/request_search', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       value: document.getElementById('input_field').value,
-      country_code: document.getElementById('country_code_dropdown').value,
     }),
   })
-      .then((response) => response.json())
-      .then((response) => displayResults(response));
+    .then((response) => response.json())
+    .then((response) => displayResults(response));
+}
+
+function send_input() {
+  event.preventDefault();
+  const input = document.getElementById('input_field').value;
+  console.log('Searching for:', input);
+  fetch('/request_search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      value: document.getElementById('input_field').value,
+      country_code: document.getElementById('country_code_dropdown').value
+    }),
+  })
+    .then((response) => response.json())
+    .then((response) => displayResults(response));
 }
 
 function checkIfEmailInString(text) {
   var re =
-      /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
+    /(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/;
   return re.test(text);
 }
 
@@ -57,6 +72,7 @@ function displayResults(data) {
 
   // Create table
   const table = document.createElement('table');
+  table.id = 'table_result'
 
   // Create table headers
   const headerRow = document.createElement('tr');
@@ -75,6 +91,7 @@ function displayResults(data) {
     const checkboxCell = document.createElement('td');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.class = 'checkbox_export'
     checkbox.id = `checkbox_${index}`;
     checkboxCell.appendChild(checkbox);
     row.appendChild(checkboxCell);
@@ -107,6 +124,36 @@ function displayResults(data) {
   });
 
   resultsContainer.appendChild(table);
+}
+
+function exportJson() {
+  var object = {}
+  var obj_lst = []
+  var list = document.getElementsByClassName('checkbox_export')
+
+  var table = document.getElementById("table_result");
+  for (var i = 1, row; row = table.rows[i]; i++) {
+    for (var j = 1, col; col = row.cells[j]; j++) {
+      const checkbox = row.querySelector('input[type="checkbox"]');
+      if (checkbox && checkbox.checked) {
+        object[table.rows[0].cells[j].innerText] = col.innerText
+      }
+    }
+    if (Object.keys(object).length != 0) {
+      obj_lst.push(object)
+    }
+    object = {}
+  }
+  if (obj_lst.length == 0) {
+    alert("Please select at least 1 element")
+  } else {
+    var json = JSON.stringify(obj_lst)
+    let jsonContent = "data:text/json;charset=utf-8," + encodeURIComponent(json);
+    const link = document.createElement("a");
+    link.setAttribute("href", jsonContent);
+    link.setAttribute("download", "export.json");
+    link.click();
+  }
 }
 
 function exportCheckedRows() {
