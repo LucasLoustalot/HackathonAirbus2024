@@ -11,7 +11,7 @@ function isValidURL(str) {
   return !!pattern.test(str);
 }
 
-function send_input() {
+function send_input(event) {
   event.preventDefault();
   const input = document.getElementById('input_field').value;
   console.log('Searching for:', input);
@@ -20,22 +20,7 @@ function send_input() {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
       value: document.getElementById('input_field').value,
-    }),
-  })
-      .then((response) => response.json())
-      .then((response) => displayResults(response));
-}
-
-function send_input() {
-  event.preventDefault();
-  const input = document.getElementById('input_field').value;
-  console.log('Searching for:', input);
-  fetch('/request_search', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      value: document.getElementById('input_field').value,
-      country_code: document.getElementById('country_code_dropdown').value
+      country_code: document.getElementById('country_code_dropdown').value,
     }),
   })
       .then((response) => response.json())
@@ -95,7 +80,8 @@ function displayResults(data) {
     row.appendChild(checkboxCell);
 
     // Create data cells
-    keysOrder.slice(1).forEach((key) => {  // Skip the first 'Checkbox' key
+    keysOrder.slice(1).forEach((key) => {
+      // Skip the first 'Checkbox' key
       const td = document.createElement('td');
       if (key === 'Checkbox') {
         // Skip as checkbox is already added
@@ -121,4 +107,53 @@ function displayResults(data) {
   });
 
   resultsContainer.appendChild(table);
+}
+
+function exportCheckedRows() {
+  const rows = document.querySelectorAll('#results table tr');
+  const keysOrder = [
+    'Name',
+    'Location',
+    'Link',
+    'Contact',
+    'Revenue',
+    'Size',
+    'Certifications',
+    'Skills',
+    'Main domain',
+    'Main customers',
+  ];
+
+  let csvContent = 'data:text/csv;charset=utf-8,';
+  csvContent += keysOrder.join(',') + '\n';
+
+  rows.forEach((row, index) => {
+    if (index === 0) return;
+    const checkbox = row.querySelector('input[type="checkbox"]');
+    if (checkbox && checkbox.checked) {
+      const cells = row.querySelectorAll('td');
+      const rowContent = [];
+      cells.forEach((cell, cellIndex) => {
+        if (cellIndex === 0) return;
+        rowContent.push(cell.innerText);
+      });
+      csvContent += rowContent.join(',') + '\n';
+    }
+  });
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0');
+  var yyyy = today.getFullYear();
+  link.setAttribute(
+      'download',
+      `supplier_search_${document.getElementById('input_field').value}_${dd}_${mm}_${yyyy}.csv`);
+  document.body.appendChild(link);
+  if (csvContent.length != 117)
+    link.click();
+  else
+    alert("Please select a row to export");
+  document.body.removeChild(link);
 }
