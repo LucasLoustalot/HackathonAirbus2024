@@ -93,6 +93,7 @@ function displayResults(data) {
     keysOrder.slice(1).forEach((key) => {
       // Skip the first 'Checkbox' key
       const td = document.createElement('td');
+      item[key] = item[key].trim();
       if (key === 'Checkbox') {
         // Skip as checkbox is already added
       } else if (isValidURL(item[key])) {
