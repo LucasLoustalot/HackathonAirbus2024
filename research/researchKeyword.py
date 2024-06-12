@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import getURLs
+import research.getURLs as getURLs
 
 def search(keyWord : str, countryCode : str, language : str) :
     option = webdriver.ChromeOptions()
