@@ -8,7 +8,12 @@ ban_words = [
     "alibaba",
     "metoree",
     "google",
-    "ebay"
+    "ebay",
+    "wiki",
+    "etsy",
+    "temu",
+    "youtube",
+    "aliexpress"
 ]
 
 def urlIsCorrect(url: str) -> bool:

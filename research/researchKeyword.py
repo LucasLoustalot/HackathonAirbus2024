@@ -28,7 +28,10 @@ def search(keyWord : str, countryCode : str, language : str) -> list[str] :
 
     for url in filteredName:
         json = extract.gemini.get_company_data(url)
-        csv = extract.json_to_csv.json_to_csv(csv)
+        if ("args" not in json):
+            resultList.append(";;" + url + ";;;;;;;")
+            continue
+        csv = extract.json_to_csv.json_to_csv(json)
         resultList.append(csv)
 
     return resultList

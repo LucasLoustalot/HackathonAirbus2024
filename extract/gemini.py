@@ -47,8 +47,9 @@ data = genai.protos.FunctionDeclaration(
 model = genai.GenerativeModel('gemini-1.5-flash', tools=[data])
 
 def get_company_data(url : str, language : str = 'en'):
-    prompt = open(language + '.txt', 'r').read()
+    prompt = open("extract/" + language + '.txt', 'r').read()
     print(f"{url} {prompt}")
     result = model.generate_content(f"{url} {prompt}", tool_config={'function_calling_config':'ANY'})
     fc = result.candidates[0].content.parts[0].function_call
-    return json.dumps(type(fc).to_dict(fc), indent=4)
+    print(json.dumps(type(fc).to_dict(fc), indent=4))
+    return type(fc).to_dict(fc)

@@ -7,6 +7,8 @@ def get_info_value(info, json):
     return ""
 
 def get_list_values(info, json):
+    if (info not in json):
+        return ""
     str = ""
     for key, value in json.items():
         if key == info:
