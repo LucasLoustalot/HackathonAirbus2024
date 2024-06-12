@@ -16,6 +16,7 @@ languages = {
     "KR": "korean",
     "JP": "japanese",
     "BR": "portuguese",
+    "MX": "spanish",
     "WW": "english"
 }
 data_headers = [
