@@ -35,7 +35,7 @@ def parse_result_csv(lst: list[str]) -> list[str]:
     ret_lst: list = []
 
     for s in lst:
-        r = s.split("; ")
+        r = s.split(";")
         ret_lst.append(r)
     return ret_lst
 
