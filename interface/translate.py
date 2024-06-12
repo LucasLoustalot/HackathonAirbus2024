@@ -153,7 +153,3 @@ def get_translated_list(word):
 def translated_text(text, origin, output):
     translated = GoogleTranslator(source=origin, target=output).translate(text=text)
     return translated
-
-ll = get_translated_list("Bonjour")[0]
-print(ll["lang"])
-print(ll["translation"])
