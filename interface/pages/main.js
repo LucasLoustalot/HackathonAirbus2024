@@ -13,7 +13,8 @@ function isValidURL(str) {
 
 function send_input(event) {
   event.preventDefault();
-  const input = document.getElementById('input_field').value;
+  const resultsContainer = document.getElementById('results');
+  resultsContainer.innerHTML = '';  // Clear previous results
   const button = document.getElementById('submit_input');
   const loader = document.getElementById('loader');
   loader.style.display = "block";
